@@ -1,0 +1,61 @@
+<Container fluid>
+        <Row>
+          <Col>
+            <Header />
+          </Col>
+        </Row>
+        <Row>
+          <Col md>
+            <Context /> 
+          </Col> 
+          <Col md>
+            <Speed />
+          </Col>
+        </Row>
+        <Row>
+          <Col md>
+            <TimeSpent/>
+          </Col>
+          <Col md>
+            <TimeSpent />
+          </Col>
+        </Row>
+        <Row>
+         <Col>
+            <div className="App"> 
+              <header className="App-header">
+                <img src={logo} className="App-logo" alt="logo" />
+              </header>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+
+
+
+      <Row className = 'Col'>
+         <Col>
+            <div className="App"> 
+              <header className="App-header">
+                <img src={logo} className="App-logo" alt="logo" />
+              </header>
+            </div>
+          </Col>
+        </Row>
+
+
+        <Scrollbar style = {{width: 200, height: 400}}>
+          <InfiniteScroll
+          dataLength={this.state.items.length}
+          next={this.fetchMoreData}
+          hasMore={true}
+          scrollableTarget= 
+          loader={<h4>Loading...</h4>}
+          >
+          {this.state.items.map((i, index) => (
+              <div style={style} key={index}>
+              div {index}
+              </div>
+          ))}
+          </InfiniteScroll>
+       </Scrollbar>

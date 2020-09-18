@@ -49,6 +49,7 @@ class InfScroll extends React.Component {
         )
       };
 
+      //
     componentDidMount() {
       console.log(this.state)
     }

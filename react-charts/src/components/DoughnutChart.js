@@ -41,7 +41,6 @@ class DoughnutChart extends Component {
             this.setState ({
                 state : newState
             })
-            console.log(this.state.chartData.datasets)
         }
     }
 

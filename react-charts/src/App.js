@@ -9,7 +9,8 @@ import SimpleMap from './components/Map';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col} from 'react-bootstrap';
 import './scrollbar.css';
-import InfScroll from './components/InfinteScroll';
+import InfScroll from './components/InfScroll';
+
 
 
 

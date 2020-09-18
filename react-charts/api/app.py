@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 from Analysis import Analysis
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 from bson.binary import UUIDLegacy as luuid
 
@@ -45,7 +45,8 @@ def get_time():
 
 @app.route('/trips', methods=['GET'])
 def get_trips():
-    res = col.find({})
+    actual_value = int(request.args.get('number'))
+    res = col.find({}).skip(actual_value).limit(actual_value + 20)
     list_trips = []
     item = {}
     k = 0

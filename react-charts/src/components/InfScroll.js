@@ -12,12 +12,51 @@ const style = {
 
 class InfScroll extends React.Component {
     state = {
-        items: []
+      trips: [],
+      hasMore: true
     };
 
-    fetchMoreData = () => {
+    componentWillMount() {
+      axios({
+        method: 'get',
+        url: 'http://127.0.0.1:5000/trips',
+        params: {number: 0}
+      }).then(
+        (res) => res.data
+      ).then(
+        (data) => this.setState({
+          trips: data
+        })
+      )
+    }
 
+    fetchMoreData = () => {
+        axios({
+          method: 'get',
+          url: 'http://127.0.0.1:5000/trips',
+          params: {number: this.state.trips.length}
+        })
+        .then(
+          (res) => res.data
+        )
+        .then(
+          (data) => this.setState({
+            ...this.state, trips: data
+          })
+        )
+        .catch( 
+          (err) => console.log(err)
+        )
       };
+
+      
+    componentDidUpdate() {
+      console.log(this.state)
+    }
+
+    componentDidMount() {
+      console.log(this.state)
+    }
 
   render() {
     const myScrollbar = {
@@ -30,15 +69,15 @@ class InfScroll extends React.Component {
         <hr />
         <div id="scrollableDiv" style={{ height: 300, overflow: "auto" }}>
           <InfiniteScroll
-            dataLength={this.state.items.length}
+            dataLength={this.state.trips.length}
             next={this.fetchMoreData}
-            hasMore={true}
+            hasMore={this.state.hasMore}
             loader={<h4>Loading...</h4>}
             scrollableTarget="scrollableDiv"
           >
-            {this.state.items.map((i, index) => (
+            {this.state.trips.map((i, index) => (
               <div style={style} key={index}>
-                div - #{index}
+                {i.name}
               </div>
             ))}
           </InfiniteScroll>
